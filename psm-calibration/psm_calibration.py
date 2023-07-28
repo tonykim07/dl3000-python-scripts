@@ -1,9 +1,4 @@
 
-# pyvisa stuff
-# writing to a csv file
-# computing line of best fit and equation of a line
-# output multiplier and offset values
-
 from dl3000.dl3000 import DL3000
 from argparse import ArgumentParser
 from serial import Serial
