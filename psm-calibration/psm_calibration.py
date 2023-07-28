@@ -16,12 +16,15 @@ class PSM_Logger():
         self.current_max = 20
         self.interval = 1000
         self.num_samples = 20
-        self.file_name = None
+        self.filename = None
         self.file = None
+
+    def argument_parser(self):
+        pass
     
     def create_csv(self): 
         current_time = time.datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.file_name = "PSM_Calibration_" + current_time + ".csv"
+        self.filename = "PSM_Calibration_" + current_time + ".csv"
         # self.file = open(file_name, "w")
 
     def init_eload(self): 
