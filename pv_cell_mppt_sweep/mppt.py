@@ -19,14 +19,15 @@ class MPPT():
         self.filename = None
         self.current_range = [0, 7]
         self.interval = 1000
+        self.file = None
 
     def argument_parser(self): 
         pass
 
     def create_csv(self):
         current_time = time.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_name = "MPPT_" + current_time + ".csv"
-        self.filename = open(file_name, "w")
+        self.filename = "MPPT_" + current_time + ".csv"
+        # self.file = open(self.filename, "w")
 
     def init_eload(self):   
         eload.reset()

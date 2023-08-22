@@ -25,7 +25,7 @@ class PSM_Logger():
     def create_csv(self): 
         current_time = time.datetime.now().strftime("%Y%m%d_%H%M%S")
         self.filename = "PSM_Calibration_" + current_time + ".csv"
-        # self.file = open(file_name, "w")
+        # self.file = open(filename, "w")
 
     def init_eload(self): 
         eload.reset()
