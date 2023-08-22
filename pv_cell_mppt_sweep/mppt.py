@@ -25,8 +25,8 @@ class MPPT():
 
     def create_csv(self):
         current_time = time.datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.file_name = "MPPT_" + current_time + ".csv"
-        # self.file = open(file_name, "w")
+        file_name = "MPPT_" + current_time + ".csv"
+        self.filename = open(file_name, "w")
 
     def init_eload(self):   
         eload.reset()

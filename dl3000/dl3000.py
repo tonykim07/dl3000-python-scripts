@@ -7,38 +7,17 @@ from time import sleep
 
 class DL3000(): 
 
-    def __init__(self, inst, resource): 
-        self.inst = inst
+    def __init__(self, resource): 
         self.resource = resource
+        self.inst = ResourceManager().open_resource(self.resource)
 
     def __enter__(self): 
         self.inst = ResourceManager().open_resource(self.resource)
         return self
     
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self):
         if self.inst: 
             self.inst.close() 
-    
-    
-    @classmethod
-    def from_resource_id(cls, resource_id):
-        resource_manager = ResourceManager()
-        for resource in resource_manager.list_resources():
-            if resource_id in resource:
-                return cls(resource)
-        raise ValueError(f"No valid resource found for ID: {resource_id}")
-
-    @classmethod
-    def auto_connect(cls):
-        resource_manager = ResourceManager()
-        relevant_resources = [resource for resource in resource_manager.list_resources() if "DL3" in resource]
-
-        if len(relevant_resources) == 0:
-            raise ValueError("No valid DL3000 series resource found.")
-        elif len(relevant_resources) > 1:
-            raise ValueError(f"Multiple DL3000 series resources found: {relevant_resources}")
-        
-        return cls(relevant_resources[0])
 
     # Common Commands
     def reset(self): 
