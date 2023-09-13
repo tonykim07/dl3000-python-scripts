@@ -47,6 +47,9 @@ class PSM_Logger():
                 logger.writerow([serial_data, eload.read_current()])
 
                 time.sleep(self.interval / 1000)
+            
+        eload.set_cc_current(0)
+        eload.disable()
         
     def characterize(self):
         pass # calculate line of best fit from data
