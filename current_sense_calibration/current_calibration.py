@@ -4,7 +4,7 @@ from serial import Serial
 from pandas import read_csv
 from scipy import stats
 import matplotlib.pyplot as plt
-import time, csv
+import time, csv, datetime
 
 PLOT = True
 
@@ -18,16 +18,14 @@ class PSM_Logger():
     def __init__(self): 
         self.current_min = 0
         self.current_max = 20
-        self.interval = 1000
+        self.delay = 1
         self.num_samples = 20
         self.filename = None
         self.file = None
-
-    def argument_parser(self):
-        pass
     
     def create_csv(self): 
-        self.filename = "PSM_Calibration.csv"
+        current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.filename = "PSM_Calibration_" + str(current_time) + ".csv"
 
     def init_eload(self): 
         eload.reset()
@@ -52,7 +50,7 @@ class PSM_Logger():
                 
                 logger.writerow([serial_data, eload.read_current()])
 
-                time.sleep(self.interval / 1000)
+                time.sleep(self.delay)
             
         eload.set_cc_current(0)
         eload.disable()
