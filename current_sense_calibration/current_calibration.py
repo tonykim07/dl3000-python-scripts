@@ -3,8 +3,10 @@ from dl3000.dl3000 import DL3000
 from serial import Serial
 from pandas import read_csv
 from scipy import stats
+import matplotlib.pyplot as plt
 import time, csv
 
+PLOT = True
 
 serial = Serial("COM5", 115200, timeout=0.002)
 eload_resource = "USB0::0x1AB1::0x0E11::DL3A192600119::INSTR"
@@ -61,6 +63,13 @@ class PSM_Logger():
         y = df["E Load Reading"]
 
         slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+
+        if PLOT:
+            plt.scatter(x, y, label="Current Readings")
+            plt.xlabel("Motherboard Current Readings")
+            plt.ylabel("E Load Current Readings")
+            plt.show()
+
         return slope, intercept
         
 
